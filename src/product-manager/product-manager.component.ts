@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Sanpham } from "../sanpham";
+import { Data } from "../data";
 
 @Component({
   selector: 'app-product-manager',
@@ -11,5 +13,8 @@ export class ProductManagerComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  sp = Data;
+  removeSp(sp){
+    this.sp = this.sp.filter(s => s.id != sp.id);
+  }
 }
