@@ -1,19 +1,21 @@
-import { Component, OnInit } from "@angular/core";
-import { Sanpham } from "../sanpham";
-import { Data } from "../data";
-// import {  product-manager } from "../product-manager"
+import { Component, OnInit } from '@angular/core';
+import { Product } from '../Product';
+import { ProductService } from '../services/product.service'
 @Component({
-  selector: "app-product-list",
-  templateUrl: "./product-list.component.html",
-  styleUrls: ["./product-list.component.css"]
+  selector: 'app-product-list',
+  templateUrl: './product-list.component.html',
+  styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-  constructor() {}
+  products: Product[];
+  constructor(
+    private productService: ProductService
+  ) { }
 
-  ngOnInit() {}
-  products = Data;
-  tenSp : Sanpham;
-  remove(sp){
-    this.products = this.products.filter(a => a.price != sp);
+  ngOnInit(): void {
+    this.products = this.productService.getProducts();
+  }
+  removeItem(id){
+    this.products = this.productService.removeProduct(id);
   }
 }
